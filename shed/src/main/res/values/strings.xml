@@ -1,0 +1,15 @@
+<resources>
+    <string name="title_activity_shed">ShedActivity</string>
+    <string name="logs">Logs</string>
+    <string name="share_log_file">Share log file</string>
+    <string name="delete_all_logs">Delete all logs</string>
+    <string name="back">Back</string>
+    <string name="no_log_entries_yet">No log entries yet.</string>
+    <string name="an_unknown_error_occurred">An unknown error occurred.</string>
+    <string name="no_log_entries_to_share">No log entries to share.</string>
+    <string name="toggle_stack_trace">Toggle stack trace</string>
+    <plurals name="num_of_logs">
+        <item quantity="one">%d Logs</item>
+        <item quantity="other">%d Logs</item>
+    </plurals>
+</resources>

@@ -1,0 +1,75 @@
+public abstract interface class io/github/janmalch/shed/database/LogDao {
+	public abstract fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun countAll ()Lkotlinx/coroutines/flow/Flow;
+	public abstract fun findAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun insert (Lio/github/janmalch/shed/database/LogEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun pagingSource ()Landroidx/paging/PagingSource;
+}
+
+public final class io/github/janmalch/shed/database/LogDao_Impl : io/github/janmalch/shed/database/LogDao {
+	public fun <init> (Landroidx/room/RoomDatabase;)V
+	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun countAll ()Lkotlinx/coroutines/flow/Flow;
+	public fun findAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun getRequiredConverters ()Ljava/util/List;
+	public fun insert (Lio/github/janmalch/shed/database/LogEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun pagingSource ()Landroidx/paging/PagingSource;
+}
+
+public final class io/github/janmalch/shed/database/LogEntity {
+	public static final field Companion Lio/github/janmalch/shed/database/LogEntity$Companion;
+	public fun <init> (ILkotlinx/datetime/Instant;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()I
+	public final fun component2 ()Lkotlinx/datetime/Instant;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()I
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (ILkotlinx/datetime/Instant;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)Lio/github/janmalch/shed/database/LogEntity;
+	public static synthetic fun copy$default (Lio/github/janmalch/shed/database/LogEntity;ILkotlinx/datetime/Instant;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/github/janmalch/shed/database/LogEntity;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()I
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getPriority ()I
+	public final fun getStackTrace ()Ljava/lang/String;
+	public final fun getTag ()Ljava/lang/String;
+	public final fun getTimestamp ()Lkotlinx/datetime/Instant;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public synthetic class io/github/janmalch/shed/database/LogEntity$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lio/github/janmalch/shed/database/LogEntity$$serializer;
+	public final fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lio/github/janmalch/shed/database/LogEntity;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Lio/github/janmalch/shed/database/LogEntity;)V
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+}
+
+public final class io/github/janmalch/shed/database/LogEntity$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class io/github/janmalch/shed/database/ShedDatabase : androidx/room/RoomDatabase {
+	public static final field Companion Lio/github/janmalch/shed/database/ShedDatabase$Companion;
+	public static final field DATABASE_NAME Ljava/lang/String;
+	public fun <init> ()V
+	public static final fun getInstance-hhJSO8g (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;Lkotlin/jvm/functions/Function0;)Lio/github/janmalch/shed/database/ShedDatabase;
+	public abstract fun logDao ()Lio/github/janmalch/shed/database/LogDao;
+}
+
+public final class io/github/janmalch/shed/database/ShedDatabase$Companion {
+	public final fun getInstance-hhJSO8g (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;Lkotlin/jvm/functions/Function0;)Lio/github/janmalch/shed/database/ShedDatabase;
+	public static synthetic fun getInstance-hhJSO8g$default (Lio/github/janmalch/shed/database/ShedDatabase$Companion;Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lio/github/janmalch/shed/database/ShedDatabase;
+}
+
+public final class io/github/janmalch/shed/database/ShedDatabase_Impl : io/github/janmalch/shed/database/ShedDatabase {
+	public fun <init> ()V
+	public fun clearAllTables ()V
+	public fun getAutoMigrations (Ljava/util/Map;)Ljava/util/List;
+	public fun getRequiredAutoMigrationSpecs ()Ljava/util/Set;
+	public fun logDao ()Lio/github/janmalch/shed/database/LogDao;
+}
+

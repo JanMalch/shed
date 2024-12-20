@@ -1,0 +1,9 @@
+public final class io/github/janmalch/shed/tree/Shed {
+	public static final field INSTANCE Lio/github/janmalch/shed/tree/Shed;
+	public final fun createTree-i8z2VEo (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLkotlinx/datetime/Clock;Lkotlinx/coroutines/CoroutineScope;)Lio/github/janmalch/shed/tree/ShedTree;
+	public static synthetic fun createTree-i8z2VEo$default (Lio/github/janmalch/shed/tree/Shed;Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLkotlinx/datetime/Clock;Lkotlinx/coroutines/CoroutineScope;ILjava/lang/Object;)Lio/github/janmalch/shed/tree/ShedTree;
+}
+
+public final class io/github/janmalch/shed/tree/ShedTree : timber/log/Timber$DebugTree {
+}
+
