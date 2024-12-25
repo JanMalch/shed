@@ -25,7 +25,7 @@ repositories {
             }
         }
         filter {
-            includeGroup("io.github.janmalch.shed")
+            includeModuleByRegex("com.github.JanMalch", "shed.*")
         }
     }
 }
@@ -40,8 +40,8 @@ dependencies {
     implementation("com.jakewharton.timber:timber:5.0.1")
     
     // only use database in debug builds, do nothing in release builds
-    debugImplementation("io.github.JanMalch.shed:shed:$shed_version")
-    releaseImplementation("io.github.JanMalch.shed:shed-nop:$shed_version")
+    debugImplementation("com.github.JanMalch:shed:$shed_version")
+    releaseImplementation("com.github.JanMalch:shed-nop:$shed_version")
 }
 ```
 
