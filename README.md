@@ -64,8 +64,8 @@ so that the database doesn't grow forever.
 Please refer to its documentation for more info.
 
 To view and export the logs, you can simply navigate to the dedicated activity
-with the static [`Shed.startActivity` function](./shed/src/main/java/io/github/janmalch/shed/Shed.kt#L22).
-For `shed-nop`, this will be a [no-op call](./shed-nop/src/main/java/io/github/janmalch/shed/Shed.kt#L15).
+with the static [`Shed.startActivity` function](./shed/src/main/java/io/github/janmalch/shed/Shed.kt#L28).
+For `shed-nop`, this will be a [no-op call](./shed-nop/src/main/java/io/github/janmalch/shed/Shed.kt#L23).
 
 ```kotlin
 Button(
