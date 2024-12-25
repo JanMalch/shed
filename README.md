@@ -4,9 +4,9 @@ _Putting [Timber](https://github.com/JakeWharton/timber) into a [Room](https://d
 
 ## About
 
-Shed is persists your `Timber` logs in a database, and provides an Activity to view and export them.
+Shed persists your `Timber` logs in a database, and provides an Activity to view and export them.
 
-Thus, making it useful for internal apps or hobby projects. 
+Use it for hobby projects or internal apps, without access to a proper remote logging system. 
 You most likely don't want to use it in a real production app.
 
 ## Installation
