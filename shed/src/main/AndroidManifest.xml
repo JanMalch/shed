@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".ShedActivity"
+            android:name=".ui.ShedActivity"
             android:exported="false"
             android:label="@string/title_activity_shed"
             android:theme="@style/Theme.Shed" />

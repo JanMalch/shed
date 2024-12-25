@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.app.ui.theme.ShedDemoTheme
-import io.github.janmalch.shed.ShedActivity
+import io.github.janmalch.shed.Shed
 import timber.log.Timber
 
 class MainActivity : ComponentActivity() {
@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
                         }
                         HorizontalDivider()
                         Button(onClick = {
-                            ShedActivity.start(this@MainActivity)
+                            Shed.startActivity(this@MainActivity)
                         }) {
                             Text("View Logs")
                         }

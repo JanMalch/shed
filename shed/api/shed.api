@@ -1,5 +1,34 @@
-public final class io/github/janmalch/shed/ComposableSingletons$ShedActivityKt {
-	public static final field INSTANCE Lio/github/janmalch/shed/ComposableSingletons$ShedActivityKt;
+public final class io/github/janmalch/shed/Shed {
+	public static final field $stable I
+	public static final field INSTANCE Lio/github/janmalch/shed/Shed;
+	public static final fun createTree-C2H2yOE (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLkotlinx/coroutines/CoroutineScope;)Ltimber/log/Timber$Tree;
+	public static synthetic fun createTree-C2H2yOE$default (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLkotlinx/coroutines/CoroutineScope;ILjava/lang/Object;)Ltimber/log/Timber$Tree;
+	public static final fun startActivity (Landroid/content/Context;)V
+}
+
+public final class io/github/janmalch/shed/database/LogDao_Impl : io/github/janmalch/shed/database/LogDao {
+	public fun <init> (Landroidx/room/RoomDatabase;)V
+	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun countAll ()Lkotlinx/coroutines/flow/Flow;
+	public fun findAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static fun getRequiredConverters ()Ljava/util/List;
+	public fun insert (Lio/github/janmalch/shed/database/LogEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun pagingSource ()Landroidx/paging/PagingSource;
+}
+
+public final class io/github/janmalch/shed/database/ShedDatabase_Impl {
+	public static final field $stable I
+	public static final field Companion Lio/github/janmalch/shed/database/ShedDatabase$Companion;
+	public fun <init> ()V
+	public fun clearAllTables ()V
+	public fun getAutoMigrations (Ljava/util/Map;)Ljava/util/List;
+	public static final fun getInstance-hhJSO8g (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;Lkotlinx/datetime/Clock;)Lio/github/janmalch/shed/database/ShedDatabase;
+	public fun getRequiredAutoMigrationSpecs ()Ljava/util/Set;
+	public fun logDao ()Lio/github/janmalch/shed/database/LogDao;
+}
+
+public final class io/github/janmalch/shed/ui/ComposableSingletons$ShedActivityKt {
+	public static final field INSTANCE Lio/github/janmalch/shed/ui/ComposableSingletons$ShedActivityKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function2;
 	public static field lambda-2 Lkotlin/jvm/functions/Function2;
 	public static field lambda-3 Lkotlin/jvm/functions/Function2;
@@ -13,16 +42,5 @@ public final class io/github/janmalch/shed/ComposableSingletons$ShedActivityKt {
 	public final fun getLambda-4$shed_release ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda-5$shed_release ()Lkotlin/jvm/functions/Function3;
 	public final fun getLambda-6$shed_release ()Lkotlin/jvm/functions/Function3;
-}
-
-public final class io/github/janmalch/shed/ShedActivity : androidx/activity/ComponentActivity {
-	public static final field $stable I
-	public static final field Companion Lio/github/janmalch/shed/ShedActivity$Companion;
-	public fun <init> ()V
-	public static final fun start (Landroid/content/Context;)V
-}
-
-public final class io/github/janmalch/shed/ShedActivity$Companion {
-	public final fun start (Landroid/content/Context;)V
 }
 

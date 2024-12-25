@@ -1,7 +1,7 @@
 package com.example.app
 
 import android.app.Application
-import io.github.janmalch.shed.tree.Shed
+import io.github.janmalch.shed.Shed
 import timber.log.Timber
 
 class ShedDemoApp : Application() {

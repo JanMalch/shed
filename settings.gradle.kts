@@ -22,6 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "shed"
 include(":app")
 include(":shed")
-include(":shed-database")
-include(":shed-tree")
 include(":shed-nop")
