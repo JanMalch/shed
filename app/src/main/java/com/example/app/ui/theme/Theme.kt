@@ -1,4 +1,4 @@
-package io.github.janmalch.shed.ui.theme
+package com.example.app.ui.theme
 
 import android.app.Activity
 import android.os.Build

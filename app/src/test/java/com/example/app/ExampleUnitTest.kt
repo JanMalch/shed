@@ -1,4 +1,4 @@
-package io.github.janmalch.shed
+package com.example.app
 
 import org.junit.Test
 

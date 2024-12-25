@@ -1,4 +1,4 @@
-package io.github.janmalch.shed
+package com.example.app
 
 import android.os.Bundle
 import android.os.Handler
@@ -23,7 +23,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.github.janmalch.shed.ui.theme.ShedTheme
+import com.example.app.ui.theme.ShedTheme
+import io.github.janmalch.shed.ShedActivity
 import timber.log.Timber
 
 class MainActivity : ComponentActivity() {

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "io.github.janmalch.shed"
+    namespace = "com.example.app"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "io.github.janmalch.shed"
+        applicationId = "com.example.app"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -25,6 +25,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // just for demo
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {

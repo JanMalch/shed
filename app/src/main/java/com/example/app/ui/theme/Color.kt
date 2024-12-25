@@ -1,4 +1,4 @@
-package io.github.janmalch.shed.ui.theme
+package com.example.app.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
