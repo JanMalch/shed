@@ -8,6 +8,9 @@
     <string name="an_unknown_error_occurred">An unknown error occurred.</string>
     <string name="no_log_entries_to_share">No log entries to share.</string>
     <string name="toggle_stack_trace">Toggle stack trace</string>
+    <string name="delete_all_logs_reassurance">Are you sure you want to delete all logs? This cannot be undone.</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
     <plurals name="num_of_logs">
         <item quantity="one">%d Logs</item>
         <item quantity="other">%d Logs</item>
