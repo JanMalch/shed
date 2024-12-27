@@ -1,6 +1,6 @@
-public final class io/github/janmalch/shed/Shed {
+public final class com/github/janmalch/shed/Shed {
 	public static final field $stable I
-	public static final field INSTANCE Lio/github/janmalch/shed/Shed;
+	public static final field INSTANCE Lcom/github/janmalch/shed/Shed;
 	public static final fun createTree-C2H2yOE (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLkotlinx/coroutines/CoroutineScope;)Ltimber/log/Timber$Tree;
 	public static synthetic fun createTree-C2H2yOE$default (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLkotlinx/coroutines/CoroutineScope;ILjava/lang/Object;)Ltimber/log/Timber$Tree;
 	public static final fun startActivity (Landroid/content/Context;)V
