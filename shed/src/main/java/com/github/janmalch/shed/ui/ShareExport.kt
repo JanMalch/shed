@@ -12,7 +12,7 @@ import java.io.File
 internal class ShareExport : ActivityResultContract<File, Boolean>() {
     override fun createIntent(context: Context, input: File): Intent {
         val uri =
-            FileProvider.getUriForFile(context, "com.github.janmalch.shed.fileprovider", input)
+            FileProvider.getUriForFile(context, context.packageName + ".com.github.janmalch.shed.fileprovider", input)
 
         return Intent.createChooser(
             Intent(Intent.ACTION_SEND).apply {
