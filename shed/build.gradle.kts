@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "io.github.janmalch.shed"
+    namespace = "com.github.janmalch.shed"
     compileSdk = 35
 
     defaultConfig {

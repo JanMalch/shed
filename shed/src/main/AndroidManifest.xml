@@ -10,7 +10,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="io.github.janmalch.shed.fileprovider"
+            android:authorities="com.github.janmalch.shed.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
