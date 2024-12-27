@@ -6,7 +6,7 @@ _Putting [Timber](https://github.com/JakeWharton/timber) into a [Room](https://d
 
 Shed persists your `Timber` logs in a database, and provides an Activity to view and export them.
 
-Use it for hobby projects or internal apps, without access to a proper remote logging system. 
+Use it for hobby projects or internal apps, without access to a proper remote logging system.
 You most likely don't want to use it in a real production app.
 
 ## Installation
@@ -24,7 +24,7 @@ repositories {
             }
         }
         filter {
-            includeModuleByRegex("com.github.JanMalch", "shed.*")
+            includeGroup("com.github.JanMalch.shed")
         }
     }
 }
@@ -37,10 +37,10 @@ Shed provides two modules: `shed` and `shed-nop`.
 dependencies {
     val shed_version = "?"
     implementation("com.jakewharton.timber:timber:5.0.1")
-    
+
     // Only use database in debug builds, do nothing in release builds.
-    debugImplementation("com.github.JanMalch:shed:$shed_version")
-    releaseImplementation("com.github.JanMalch:shed-nop:$shed_version")
+    debugImplementation("com.github.JanMalch.shed:shed:$shed_version")
+    releaseImplementation("com.github.JanMalch.shed:shed-nop:$shed_version")
 }
 ```
 
