@@ -1,5 +1,6 @@
 [versions]
 agp = "8.7.3"
+testCore = "1.6.1"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -13,6 +14,7 @@ composeBom = "2024.12.01"
 appcompat = "1.7.0"
 material = "1.12.0"
 paging = "3.3.5"
+robolectric = "4.14"
 timber = "5.0.1"
 room = "2.6.1"
 ksp = "2.0.21-1.0.27"
@@ -20,6 +22,7 @@ kotlinxSerialization = "1.8.0-RC"
 bcv = "0.17.0"
 
 [libraries]
+androidx-core = { module = "androidx.test:core", version.ref = "testCore" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
@@ -42,6 +45,7 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
