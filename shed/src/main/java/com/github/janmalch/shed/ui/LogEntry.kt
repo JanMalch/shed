@@ -28,16 +28,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.janmalch.shed.R
@@ -73,6 +82,8 @@ internal fun LogEntry(
         modifier = Modifier
             .fillMaxWidth()
     ) {
+        val borderWidth = with(LocalDensity.current) { 4.dp.toPx() }
+        val borderColor = priorityColor(item.priority)
         Column(
             modifier = Modifier
                 .testTag("log_entry_${item.id}")
@@ -80,6 +91,23 @@ internal fun LogEntry(
                 .run {
                     if (item.stackTrace == null) this
                     else clickable { isExpanded = !isExpanded }
+                }
+                .drawBehind {
+                    drawCircle(
+                        borderColor,
+                        center = Offset(x = 0f, y = borderWidth * 2),
+                        radius = borderWidth
+                    )
+                    drawRect(
+                        borderColor,
+                        topLeft = Offset(x = 0f, y = borderWidth * 2),
+                        size = Size(width = borderWidth, height = size.height - borderWidth * 4)
+                    )
+                    drawCircle(
+                        borderColor,
+                        center = Offset(x = 0f, y = size.height - borderWidth * 2),
+                        radius = borderWidth
+                    )
                 }
                 .padding(12.dp),
         ) {
@@ -92,26 +120,24 @@ internal fun LogEntry(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    CompositionLocalProvider(LocalContentColor provides priorityColor(item.priority)) {
-                        Text(
-                            text = priorityLabel(item.priority),
-                            fontSize = 12.sp,
-                            color = priorityColor(item.priority),
+                    Text(
+                        text = item.tag ?: "",
+                        fontSize = 12.sp,
+                        color = LocalContentColor.current.copy(alpha = 0.7f),
+                    )
+                    if (item.stackTrace != null) {
+                        val rotation by animateFloatAsState(
+                            targetValue = if (isExpanded) 180f else 0f,
+                            label = "chevron_rotation_${item.id}"
                         )
-                        if (item.stackTrace != null) {
-                            val rotation by animateFloatAsState(
-                                targetValue = if (isExpanded) 180f else 0f,
-                                label = "chevron_rotation_${item.id}"
-                            )
-                            Icon(
-                                Icons.Filled.KeyboardArrowDown,
-                                contentDescription = stringResource(R.string.toggle_stack_trace),
-                                modifier = Modifier
-                                    .size(20.dp)
-                                    .alpha(0.7f)
-                                    .rotate(rotation),
-                            )
-                        }
+                        Icon(
+                            Icons.Filled.KeyboardArrowDown,
+                            contentDescription = stringResource(R.string.toggle_stack_trace),
+                            modifier = Modifier
+                                .size(20.dp)
+                                .alpha(0.7f)
+                                .rotate(rotation),
+                        )
                     }
                 }
                 Text(
