@@ -31,10 +31,8 @@ object Shed {
     /**
      * Returns a new tree which puts all logs into a local database.
      *
-     * It supports clean-up operations, only running
-     * when [opening][androidx.room.RoomDatabase.Callback.onOpen] the database.
-     * They are not performed at later stages, to reduce runtime overhead.
-     * it will perform clean-up operations.
+     * It supports clean-up operations, only running when opening the database.
+     * They are not performed at later stages to reduce runtime overhead.
      *
      * @param context the context for database creation.
      * @param entryMaxAge maximum age for log entries.
@@ -45,6 +43,7 @@ object Shed {
      * `null` disables this clean-up operation. Default is `null`.
      * @param includeStackTraces save stack traces in database. Default is `true`.
      * @param scope the [CoroutineScope] to run the database inserts on.
+     * @see androidx.room.RoomDatabase.Callback.onOpen
      */
     @JvmStatic
     fun createTree(
