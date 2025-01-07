@@ -14,6 +14,7 @@ import timber.log.Timber
 internal class ShedTree(
     private val dao: LogDao,
     private val includeStackTraces: Boolean,
+    private val filter: Shed.LogFilter,
     private val scope: CoroutineScope,
     private val clock: Clock = Clock.System,
 ) : Timber.DebugTree() {
@@ -21,6 +22,8 @@ internal class ShedTree(
     @SuppressLint("LogNotTimber")
     override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
         val now = clock.now()
+        if (!filter.filter(priority, tag, message, t)) return
+
         scope.launch(CoroutineExceptionHandler { _, throwable ->
             Log.e(Shed.TAG, "Error while adding log to shed database.", throwable)
         }) {
