@@ -232,10 +232,12 @@ internal class ShedActivity : ComponentActivity() {
     }
 
     private fun notifyOfError() {
-        Toast.makeText(
-            this,
-            getString(R.string.an_unknown_error_occurred),
-            Toast.LENGTH_SHORT
-        ).show()
+        Handler(Looper.getMainLooper()).post {
+            Toast.makeText(
+                this,
+                getString(R.string.an_unknown_error_occurred),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }
