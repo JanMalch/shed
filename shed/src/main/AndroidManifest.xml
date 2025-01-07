@@ -9,7 +9,7 @@
             android:theme="@style/Theme.Shed" />
 
         <provider
-            android:name="androidx.core.content.FileProvider"
+            android:name="com.github.janmalch.shed.ui.ShedFileProvider"
             android:authorities="${applicationId}.com.github.janmalch.shed.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
