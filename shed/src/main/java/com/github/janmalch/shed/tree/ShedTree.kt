@@ -24,9 +24,10 @@ internal class ShedTree(
         scope.launch(CoroutineExceptionHandler { _, throwable ->
             Log.e(Shed.TAG, "Error while adding log to shed database.", throwable)
         }) {
-            val messageWithoutStackTrace = when (t) {
+            val stackTrace = t?.stackTraceToString()
+            val messageWithoutStackTrace = when (stackTrace) {
                 null -> message
-                else -> message.replace(t.stackTraceToString(), "").trimEnd()
+                else -> message.replace(stackTrace, "").trimEnd()
             }
             dao.insert(
                 LogEntity(
@@ -35,7 +36,7 @@ internal class ShedTree(
                     tag = tag,
                     priority = priority,
                     message = messageWithoutStackTrace,
-                    stackTrace = t?.takeIf { includeStackTraces }?.stackTraceToString(),
+                    stackTrace = stackTrace?.takeIf { includeStackTraces },
                 )
             )
         }
