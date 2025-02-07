@@ -1,31 +1,27 @@
 package com.github.janmalch.shed.ui
 
 import android.util.Log
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,23 +29,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.github.janmalch.shed.R
 import com.github.janmalch.shed.database.LogEntity
 
 
@@ -77,7 +65,6 @@ private fun priorityColor(priority: Int): Color = when (priority) {
 internal fun LogEntry(
     item: LogEntity,
 ) {
-    var isExpanded by rememberSaveable { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -88,10 +75,6 @@ internal fun LogEntry(
             modifier = Modifier
                 .testTag("log_entry_${item.id}")
                 .fillMaxWidth()
-                .run {
-                    if (item.stackTrace == null) this
-                    else clickable { isExpanded = !isExpanded }
-                }
                 .drawBehind {
                     drawCircle(
                         borderColor,
@@ -116,64 +99,63 @@ internal fun LogEntry(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        text = item.tag ?: "",
-                        fontSize = 12.sp,
-                        color = LocalContentColor.current.copy(alpha = 0.7f),
-                    )
-                    if (item.stackTrace != null) {
-                        val rotation by animateFloatAsState(
-                            targetValue = if (isExpanded) 180f else 0f,
-                            label = "chevron_rotation_${item.id}"
-                        )
-                        Icon(
-                            Icons.Filled.KeyboardArrowDown,
-                            contentDescription = stringResource(R.string.toggle_stack_trace),
-                            modifier = Modifier
-                                .size(20.dp)
-                                .alpha(0.7f)
-                                .rotate(rotation),
-                        )
-                    }
-                }
+                Text(
+                    text = item.tag ?: "",
+                    fontSize = 12.sp,
+                    color = LocalContentColor.current.copy(alpha = 0.7f),
+                )
                 Text(
                     text = LocalUiDateTimeFormatter.current.format(item.timestamp),
                     fontSize = 12.sp,
                     color = LocalContentColor.current.copy(alpha = 0.7f),
                 )
             }
-            Text(text = item.message)
+
+            if (item.message.length > 100) {
+                val abbreviated = remember(item.message) { item.message.take(100) + "…" }
+                var isCollapsed by rememberSaveable { mutableStateOf(true) }
+                Text(
+                    text = if (isCollapsed) abbreviated else item.message,
+                    modifier = Modifier
+                        .animateContentSize()
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) { isCollapsed = !isCollapsed }
+                )
+            } else {
+                Text(text = item.message)
+            }
 
             if (item.stackTrace != null) {
-                AnimatedVisibility(visible = isExpanded, label = "${item.id}_expansion") {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 12.dp)
-                    ) {
-                        Text(
-                            text = item.stackTrace ?: "",
-                            fontFamily = FontFamily.Monospace,
-                            fontSize = 10.sp,
-                            lineHeight = 15.sp,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .heightIn(max = 200.dp)
-                                .background(
-                                    MaterialTheme.colorScheme.surfaceVariant,
-                                    RoundedCornerShape(4.dp)
-                                )
-                                .horizontalScroll(rememberScrollState())
-                                .verticalScroll(rememberScrollState())
-                                .padding(12.dp)
+                Spacer(Modifier.height(8.dp))
+
+                val abbreviated =
+                    remember(item.stackTrace) { item.stackTrace.substringBefore('\n') }
+                var isCollapsed by rememberSaveable { mutableStateOf(true) }
+
+                Text(
+                    text = if (isCollapsed) abbreviated else item.stackTrace,
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 10.sp,
+                    lineHeight = 15.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 200.dp)
+                        .background(
+                            MaterialTheme.colorScheme.surfaceVariant,
+                            RoundedCornerShape(4.dp)
                         )
-                    }
-                }
+                        .horizontalScroll(rememberScrollState())
+                        .verticalScroll(rememberScrollState())
+                        .padding(8.dp)
+                        .animateContentSize()
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null
+                        ) { isCollapsed = !isCollapsed }
+                )
             }
         }
         HorizontalDivider()
