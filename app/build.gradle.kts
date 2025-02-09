@@ -53,7 +53,13 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.timber)
-    implementation(project(":shed"))
+
+    // You can also do: implementation(project(":shed"))
+    // CI will also build this demo app, to verify compatibility between "shed" and "shed-nop",
+    // by assembling debug and release.
+    debugImplementation(project(":shed"))
+    releaseImplementation(project(":shed-nop"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

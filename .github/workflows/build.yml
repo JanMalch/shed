@@ -1,0 +1,45 @@
+name: Assemble and test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Validate Gradle Wrapper
+      uses: gradle/actions/wrapper-validation@v3
+    - uses: actions/cache@v4
+      with:
+        path: |
+          ~/.konan
+        key: ${{ runner.os }}-${{ hashFiles('**/.lock') }}
+    - name: Copy CI gradle.properties
+      run: mkdir -p ~/.gradle ; cp .github/ci-gradle.properties ~/.gradle/gradle.properties
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    - name: Accept Android licenses
+      run: yes | "$ANDROID_HOME"/cmdline-tools/latest/bin/sdkmanager --licenses || true
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+    - name: Assemble libraries
+      run: ./gradlew :shed:assemble :shed-nop:assemble
+    - name: Assemble demo app in debug
+      run: ./gradlew :app:assembleDebug
+    - name: Assemble demo app in release to verify compatibility
+      run: ./gradlew :app:assembleRelease
+    - name: Verify binary compatibility
+      run: ./gradlew apiCheck
+    - name: Run tests
+      run: ./gradlew test
