@@ -7,15 +7,22 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kotlinx.bcv)
+    alias(libs.plugins.publish) apply false
+    alias(libs.plugins.dokka)
+}
+
+// ./gradlew dokkaGenerate to generate docs for entire project
+dokka {
+    moduleName.set("Shed")
+    moduleVersion.set(property("version") as String)
+}
+
+// https://kotlinlang.org/docs/dokka-migration.html#update-documentation-aggregation-in-multi-module-projects
+dependencies {
+    dokka(project(":shed"))
+    dokka(project(":shed-nop"))
 }
 
 apiValidation {
     ignoredProjects += "app"
-}
-
-subprojects {
-    if (!name.startsWith("shed")) return@subprojects
-
-    group = property("GROUP") as String
-    version = property("VERSION_NAME") as String
 }

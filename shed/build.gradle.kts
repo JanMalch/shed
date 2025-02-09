@@ -1,52 +1,15 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    id("shed.lib")
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
-    `maven-publish`
 }
+
+description = "Connecting Timber to a Room database."
 
 android {
-    namespace = "com.github.janmalch.shed"
-    compileSdk = 35
-
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles += getDefaultProguardFile("proguard-android-optimize.txt")
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
     buildFeatures {
         compose = true
-    }
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            register<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
-                from(components["release"])
-            }
-        }
     }
 }
 
@@ -57,10 +20,7 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.compose)
 
-    implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.timber)
 
     implementation(libs.room.runtime)
     implementation(libs.room.paging)

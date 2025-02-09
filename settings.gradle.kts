@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("convention-plugins")
     repositories {
         google {
             content {
@@ -19,7 +20,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "shed"
+rootProject.name = "android-shed" // rename so that root and shed aren't mixed up
 include(":app")
 include(":shed")
 include(":shed-nop")

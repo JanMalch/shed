@@ -1,38 +1,38 @@
-public final class com/github/janmalch/shed/Shed {
+public final class io/github/janmalch/shed/Shed {
 	public static final field $stable I
-	public static final field INSTANCE Lcom/github/janmalch/shed/Shed;
-	public static final fun createTree-i8z2VEo (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLcom/github/janmalch/shed/Shed$LogFilter;Lkotlinx/coroutines/CoroutineScope;)Ltimber/log/Timber$Tree;
-	public static synthetic fun createTree-i8z2VEo$default (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLcom/github/janmalch/shed/Shed$LogFilter;Lkotlinx/coroutines/CoroutineScope;ILjava/lang/Object;)Ltimber/log/Timber$Tree;
+	public static final field INSTANCE Lio/github/janmalch/shed/Shed;
+	public static final fun createTree-i8z2VEo (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLio/github/janmalch/shed/Shed$LogFilter;Lkotlinx/coroutines/CoroutineScope;)Ltimber/log/Timber$Tree;
+	public static synthetic fun createTree-i8z2VEo$default (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;ZLio/github/janmalch/shed/Shed$LogFilter;Lkotlinx/coroutines/CoroutineScope;ILjava/lang/Object;)Ltimber/log/Timber$Tree;
 	public static final fun startActivity (Landroid/content/Context;)V
 }
 
-public abstract interface class com/github/janmalch/shed/Shed$LogFilter {
+public abstract interface class io/github/janmalch/shed/Shed$LogFilter {
 	public abstract fun filter (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)Z
 }
 
-public final class com/github/janmalch/shed/database/LogDao_Impl : com/github/janmalch/shed/database/LogDao {
+public final class io/github/janmalch/shed/database/LogDao_Impl : io/github/janmalch/shed/database/LogDao {
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun countAll ()Lkotlinx/coroutines/flow/Flow;
 	public fun findAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun getRequiredConverters ()Ljava/util/List;
-	public fun insert (Lcom/github/janmalch/shed/database/LogEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun insert (Lio/github/janmalch/shed/database/LogEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun pagingSource ()Landroidx/paging/PagingSource;
 }
 
-public final class com/github/janmalch/shed/database/ShedDatabase_Impl {
+public final class io/github/janmalch/shed/database/ShedDatabase_Impl {
 	public static final field $stable I
-	public static final field Companion Lcom/github/janmalch/shed/database/ShedDatabase$Companion;
+	public static final field Companion Lio/github/janmalch/shed/database/ShedDatabase$Companion;
 	public fun <init> ()V
 	public fun clearAllTables ()V
 	public fun getAutoMigrations (Ljava/util/Map;)Ljava/util/List;
-	public static final fun getInstance-hhJSO8g (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;Lkotlinx/datetime/Clock;)Lcom/github/janmalch/shed/database/ShedDatabase;
+	public static final fun getInstance-hhJSO8g (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;Lkotlinx/datetime/Clock;)Lio/github/janmalch/shed/database/ShedDatabase;
 	public fun getRequiredAutoMigrationSpecs ()Ljava/util/Set;
-	public fun logDao ()Lcom/github/janmalch/shed/database/LogDao;
+	public fun logDao ()Lio/github/janmalch/shed/database/LogDao;
 }
 
-public final class com/github/janmalch/shed/ui/ComposableSingletons$ShedActivityKt {
-	public static final field INSTANCE Lcom/github/janmalch/shed/ui/ComposableSingletons$ShedActivityKt;
+public final class io/github/janmalch/shed/ui/ComposableSingletons$ShedActivityKt {
+	public static final field INSTANCE Lio/github/janmalch/shed/ui/ComposableSingletons$ShedActivityKt;
 	public static field lambda-1 Lkotlin/jvm/functions/Function2;
 	public static field lambda-10 Lkotlin/jvm/functions/Function3;
 	public static field lambda-11 Lkotlin/jvm/functions/Function3;

@@ -1,5 +1,7 @@
 # Shed
 
+[![Maven Central Version](https://img.shields.io/maven-central/v/io.github.janmalch/ktor-revfile-core)](https://central.sonatype.com/artifact/io.github.janmalch/ktor-revfile-core)
+
 _Putting [Timber](https://github.com/JakeWharton/timber) into a [Room](https://developer.android.com/training/data-storage/room)._
 
 ## About
@@ -11,25 +13,6 @@ You most likely don't want to use it in a real production app.
 
 ## Installation
 
-Currently, Shed is only available via [JitPack](https://jitpack.io/).
-I would recommend adding JitPack only for specific projects.
-
-```kotlin
-repositories {
-    // other repositories like google() and mavenCentral() ...
-    exclusiveContent {
-        forRepository {
-            maven {
-                url = uri("https://jitpack.io")
-            }
-        }
-        filter {
-            includeGroup("com.github.JanMalch.shed")
-        }
-    }
-}
-```
-
 Shed provides two modules: `shed` and `shed-nop`.
 `shed-nop` has the same API surface as `shed`, but its implementations do nothing at runtime.
 
@@ -39,8 +22,8 @@ dependencies {
     implementation("com.jakewharton.timber:timber:5.0.1")
 
     // Only use database in debug builds, do nothing in release builds.
-    debugImplementation("com.github.JanMalch.shed:shed:$shed_version")
-    releaseImplementation("com.github.JanMalch.shed:shed-nop:$shed_version")
+    debugImplementation("io.github.janmalch.shed:shed:$shed_version")
+    releaseImplementation("io.github.janmalch.shed:shed-nop:$shed_version")
 }
 ```
 

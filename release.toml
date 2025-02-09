@@ -1,0 +1,21 @@
+# Configuration for the roar CLI
+# https://github.com/JanMalch/roar
+
+branch = "main"
+
+[[update]]
+file = "gradle.properties"
+find = "version="
+replace = "version={{version}}"
+
+[[update]]
+file = "README.md"
+find = "    val shed_version = "
+replace = "    val shed_version = \"{{version}}\""
+
+[changelog]
+include = ["feat", "fix", "refactor"]
+url_commit = "https://github.com/JanMalch/Shed/commit/{{hash}}"
+url_browse_at_tag = "https://github.com/JanMalch/Shed/tree/v{{version}}"
+url_compare_tags = "https://github.com/JanMalch/Shed/compare/v{{previous}}...v{{version}}"
+url_commits_for_tag = "https://github.com/JanMalch/Shed/commits/v{{version}}"

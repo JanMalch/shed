@@ -20,6 +20,8 @@ room = "2.6.1"
 ksp = "2.0.21-1.0.27"
 kotlinxSerialization = "1.8.0-RC"
 bcv = "0.17.0"
+publish = "0.30.0"
+dokka = "2.0.0"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "testCore" }
@@ -53,6 +55,12 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 
+# Dependencies of the included build-logic
+dokka-plugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version.ref = "dokka" }
+publish-plugin = { group = "com.vanniktech", name = "gradle-maven-publish-plugin", version.ref = "publish" }
+android-library-plugin = { group = "com.android.library", name = "com.android.library.gradle.plugin", version.ref = "agp" }
+kotlin-android-plugin = { group = "org.jetbrains.kotlin.android", name = "org.jetbrains.kotlin.android.gradle.plugin", version.ref = "kotlin" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -61,4 +69,6 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 android-library = { id = "com.android.library", version.ref = "agp" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlinx-bcv = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "bcv" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+publish = { id = "com.vanniktech.maven.publish", version.ref = "publish" }
 

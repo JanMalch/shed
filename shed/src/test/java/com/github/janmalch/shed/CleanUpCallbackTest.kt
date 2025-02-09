@@ -1,14 +1,14 @@
-package com.github.janmalch.shed
+package io.github.janmalch.shed
 
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.test.core.app.ApplicationProvider
-import com.github.janmalch.shed.database.CleanUpCallback
-import com.github.janmalch.shed.database.LogDao
-import com.github.janmalch.shed.database.LogEntity
-import com.github.janmalch.shed.database.ShedDatabase
+import io.github.janmalch.shed.database.CleanUpCallback
+import io.github.janmalch.shed.database.LogDao
+import io.github.janmalch.shed.database.LogEntity
+import io.github.janmalch.shed.database.ShedDatabase
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
