@@ -1,6 +1,6 @@
 # Shed
 
-[![Maven Central Version](https://img.shields.io/maven-central/v/io.github.janmalch/ktor-revfile-core)](https://central.sonatype.com/artifact/io.github.janmalch/ktor-revfile-core)
+[![Maven Central Version](https://img.shields.io/maven-central/v/io.github.janmalch/shed)](https://central.sonatype.com/artifact/io.github.janmalch/shed)
 
 _Putting [Timber](https://github.com/JakeWharton/timber) into a [Room](https://developer.android.com/training/data-storage/room)._
 
