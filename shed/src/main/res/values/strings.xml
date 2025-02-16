@@ -11,6 +11,15 @@
     <string name="delete_all_logs_reassurance">Are you sure you want to delete all logs? This cannot be undone.</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="is_selected">Selected</string>
+    <string name="close">Close</string>
+    <string name="priority">Priority</string>
+    <string name="priority_verbose">Verbose</string>
+    <string name="priority_debug">Debug</string>
+    <string name="priority_info">Info</string>
+    <string name="priority_warn">Warn</string>
+    <string name="priority_error">Error</string>
+    <string name="priority_assert">Assert</string>
     <plurals name="num_of_logs">
         <item quantity="one">%d Logs</item>
         <item quantity="other">%d Logs</item>

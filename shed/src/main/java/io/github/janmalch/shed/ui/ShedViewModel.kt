@@ -15,8 +15,13 @@ import io.github.janmalch.shed.Shed
 import io.github.janmalch.shed.database.LogDao
 import io.github.janmalch.shed.database.ShedDatabase
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
@@ -25,6 +30,11 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToStream
 import java.io.File
 
+internal val ALL_PRIORITIES = setOf(
+    Log.VERBOSE, Log.DEBUG, Log.INFO, Log.WARN, Log.ERROR, Log.ASSERT,
+)
+
+@OptIn(ExperimentalCoroutinesApi::class)
 @SuppressLint("LogNotTimber")
 internal class ShedViewModel(
     private val dao: LogDao,
@@ -33,7 +43,10 @@ internal class ShedViewModel(
     private val json: Json = Json { prettyPrint = true },
 ) : ViewModel() {
 
-    val totalEntries = dao.countAll()
+    private val _priorities = MutableStateFlow(ALL_PRIORITIES)
+    val priorities = _priorities.asStateFlow()
+
+    val totalEntries = _priorities.flatMapLatest { dao.countAll(it) }
         .catch {
             Log.e(Shed.TAG, "Error while counting all log entries.", it)
             emit(-1)
@@ -44,11 +57,12 @@ internal class ShedViewModel(
             initialValue = -1,
         )
 
-    val logsFlow = Pager(
-        config = PagingConfig(pageSize = 20),
-        pagingSourceFactory = { dao.pagingSource() }
-    ).flow
-        .cachedIn(viewModelScope)
+    val logsFlow = _priorities.flatMapLatest {
+        Pager(
+            config = PagingConfig(pageSize = 20),
+            pagingSourceFactory = { dao.pagingSource(it) }
+        ).flow
+    }.cachedIn(viewModelScope)
 
     /**
      * @return the temporary file or `null` if log is empty
@@ -68,6 +82,10 @@ internal class ShedViewModel(
             json.encodeToStream(entireLog, out)
         }
         return tmp
+    }
+
+    fun setSelectedPriorities(priorities: Set<Int>) {
+        _priorities.value = priorities.takeUnless { it.isEmpty() } ?: ALL_PRIORITIES
     }
 
     @Throws(Exception::class)

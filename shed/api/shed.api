@@ -14,10 +14,12 @@ public final class io/github/janmalch/shed/database/LogDao_Impl : io/github/janm
 	public fun <init> (Landroidx/room/RoomDatabase;)V
 	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun countAll ()Lkotlinx/coroutines/flow/Flow;
+	public fun countAll (Ljava/util/Set;)Lkotlinx/coroutines/flow/Flow;
 	public fun findAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun insert (Lio/github/janmalch/shed/database/LogEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun pagingSource ()Landroidx/paging/PagingSource;
+	public fun pagingSource (Ljava/util/Set;)Landroidx/paging/PagingSource;
 }
 
 public final class io/github/janmalch/shed/database/ShedDatabase_Impl {
@@ -29,6 +31,17 @@ public final class io/github/janmalch/shed/database/ShedDatabase_Impl {
 	public static final fun getInstance-hhJSO8g (Landroid/content/Context;Lkotlin/time/Duration;Ljava/lang/Long;Lkotlinx/datetime/Clock;)Lio/github/janmalch/shed/database/ShedDatabase;
 	public fun getRequiredAutoMigrationSpecs ()Ljava/util/Set;
 	public fun logDao ()Lio/github/janmalch/shed/database/LogDao;
+}
+
+public final class io/github/janmalch/shed/ui/ComposableSingletons$LevelFilterChipKt {
+	public static final field INSTANCE Lio/github/janmalch/shed/ui/ComposableSingletons$LevelFilterChipKt;
+	public static field lambda-1 Lkotlin/jvm/functions/Function2;
+	public static field lambda-2 Lkotlin/jvm/functions/Function2;
+	public static field lambda-3 Lkotlin/jvm/functions/Function2;
+	public fun <init> ()V
+	public final fun getLambda-1$shed_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-2$shed_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda-3$shed_release ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class io/github/janmalch/shed/ui/ComposableSingletons$ShedActivityKt {
