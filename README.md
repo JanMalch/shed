@@ -22,8 +22,8 @@ dependencies {
     implementation("com.jakewharton.timber:timber:5.0.1")
 
     // Only use database in debug builds, do nothing in release builds.
-    debugImplementation("io.github.janmalch.shed:shed:$shed_version")
-    releaseImplementation("io.github.janmalch.shed:shed-nop:$shed_version")
+    debugImplementation("io.github.janmalch:shed:$shed_version")
+    releaseImplementation("io.github.janmalch:shed-nop:$shed_version")
 }
 ```
 
