@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application>
+        <provider
+            android:name="io.github.janmalch.shed.autoload.ShedAutoloadProvider"
+            android:authorities="${applicationId}.shed-autoload"
+            android:exported="false"
+            tools:node="merge" />
+    </application>
+</manifest>

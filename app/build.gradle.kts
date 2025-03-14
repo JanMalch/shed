@@ -58,6 +58,10 @@ dependencies {
     // CI will also build this demo app, to verify compatibility between "shed" and "shed-nop",
     // by assembling debug and release.
     debugImplementation(project(":shed"))
+    // Autoload adds a ContentProvider which automatically plants the tree with a reasonable default.
+    // No release implementation needed, as autoload only works via Manifest merging
+    // and has no public API.
+    debugImplementation(project(":shed-autoload"))
     releaseImplementation(project(":shed-nop"))
 
     testImplementation(libs.junit)

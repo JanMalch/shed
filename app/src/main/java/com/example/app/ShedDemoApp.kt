@@ -13,13 +13,17 @@ class ShedDemoApp : Application() {
         StrictMode.setThreadPolicy(ThreadPolicy.Builder().detectAll().penaltyLog().penaltyDeath().build())
         super.onCreate()
         Timber.plant(Timber.DebugTree())
-        Timber.plant(Shed.createTree(
-            context = this,
-            filter = { priority, _, _, _ ->
-                // When you click the Verbose button, no entry will be in the database
-                // but in Logcat thanks to the Timber.DebugTree from above.
-                priority > Log.VERBOSE
-            }
-        ))
+        // Planting the tree explicitly is only necessary,
+        // if you want control over the setup options.
+        // The demo app uses the autoload module.
+
+        // Timber.plant(Shed.createTree(
+        //     context = this,
+        //     filter = { priority, _, _, _ ->
+        //         // When you click the Verbose button, no entry will be in the database
+        //         // but in Logcat thanks to the Timber.DebugTree from above.
+        //         priority > Log.VERBOSE
+        //     }
+        // ))
     }
 }

@@ -24,3 +24,4 @@ rootProject.name = "android-shed" // rename so that root and shed aren't mixed u
 include(":app")
 include(":shed")
 include(":shed-nop")
+include(":shed-autoload")
