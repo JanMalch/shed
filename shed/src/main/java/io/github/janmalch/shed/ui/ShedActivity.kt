@@ -74,10 +74,10 @@ internal class ShedActivity : ComponentActivity() {
 
     private val viewModel: ShedViewModel by viewModels { ShedViewModel.Factory }
     private val shareExport = registerForActivityResult(ShareExport()) { _ ->
-        try {
+        lifecycleScope.launch(CoroutineExceptionHandler { _, throwable ->
+            Log.w(Shed.TAG, "Failed to clean up cache directory after share.", throwable)
+        }) {
             viewModel.clearCache()
-        } catch (e: Exception) {
-            Log.w(Shed.TAG, "Failed to clean up cache directory after share.", e)
         }
     }
 

@@ -14,7 +14,9 @@ import androidx.paging.cachedIn
 import io.github.janmalch.shed.Shed
 import io.github.janmalch.shed.database.LogDao
 import io.github.janmalch.shed.database.ShedDatabase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,6 +26,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.datetime.Clock
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -38,9 +41,11 @@ internal val ALL_PRIORITIES = setOf(
 @SuppressLint("LogNotTimber")
 internal class ShedViewModel(
     private val dao: LogDao,
-    private val cacheDir: File,
-    private val clock: Clock,
+    // File constructor is not main-thread-safe, so take in a factory
+    private val cacheDir: () -> File,
+    private val clock: Clock = Clock.System,
     private val json: Json = Json { prettyPrint = true },
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
 
     private val _priorities = MutableStateFlow(ALL_PRIORITIES)
@@ -69,19 +74,19 @@ internal class ShedViewModel(
      */
     @OptIn(ExperimentalSerializationApi::class)
     @Throws(Exception::class)
-    suspend fun dumpToFile(): File? {
+    suspend fun dumpToFile(): File? = withContext(ioDispatcher) {
         val entireLog = dao.findAll()
         if (entireLog.isEmpty()) {
-            return null
+            return@withContext null
         }
         val tmp = File(
-            cacheDir.also { it.mkdir() },
+            cacheDir().also { it.mkdir() },
             "log-${clock.now().toEpochMilliseconds()}.json",
         )
         tmp.outputStream().buffered().use { out ->
             json.encodeToStream(entireLog, out)
         }
-        return tmp
+        return@withContext tmp
     }
 
     fun setSelectedPriorities(priorities: Set<Int>) {
@@ -89,8 +94,8 @@ internal class ShedViewModel(
     }
 
     @Throws(Exception::class)
-    fun clearCache() {
-        cacheDir.delete()
+    suspend fun clearCache(): Unit = withContext(ioDispatcher) {
+        cacheDir().delete()
     }
 
     fun deleteAllLogs() {
@@ -108,8 +113,7 @@ internal class ShedViewModel(
                 val dao = ShedDatabase.getInstance(application).logDao()
                 ShedViewModel(
                     dao = dao,
-                    cacheDir = File(application.cacheDir, "shed"),
-                    clock = Clock.System
+                    cacheDir = { File(application.cacheDir, "shed") },
                 )
             }
         }
