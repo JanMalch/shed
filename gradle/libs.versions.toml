@@ -21,7 +21,7 @@ room = "2.7.2"
 ksp = "2.0.21-1.0.27"
 kotlinxSerialization = "1.8.0-RC"
 bcv = "0.17.0"
-publish = "0.30.0"
+publish = "0.33.0"
 dokka = "2.0.0"
 
 [libraries]
