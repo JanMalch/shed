@@ -1,3 +1,15 @@
+## [0.4.0](https://github.com/JanMalch/Shed/tree/v0.4.0) - July 6, 2025
+
+**Full Changelog:** [`v0.3.0...v0.4.0`](https://github.com/JanMalch/Shed/compare/v0.3.0...v0.4.0)
+
+| type | description | commit |
+|---|---|---|
+| feat | add retention duration when deleting logs from UI | [`6f13a0c9`](https://github.com/JanMalch/Shed/commit/6f13a0c9fe12c08b8365cf6013d905cf6f6848e9) |
+| fix | prevent filepaths name clash | [`4b47efa6`](https://github.com/JanMalch/Shed/commit/4b47efa60fdf28744cd7d56b3e69c115aa3a2989) |
+| fix | set unique namespace for autoload module | [`9f6b31ed`](https://github.com/JanMalch/Shed/commit/9f6b31ed2f719adb0f3fa76ae2e06809f80c6ecd) |
+
+
+
 ## [0.3.0](https://github.com/JanMalch/Shed/tree/v0.3.0) - March 14, 2025
 
 **Full Changelog:** [`v0.2.0...v0.3.0`](https://github.com/JanMalch/Shed/compare/v0.2.0...v0.3.0)
