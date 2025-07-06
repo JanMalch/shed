@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
+import kotlinx.datetime.Instant
 
 @Dao
 internal interface LogDao {
@@ -25,6 +26,9 @@ internal interface LogDao {
 
     @Insert
     suspend fun insert(log: LogEntity)
+
+    @Query("DELETE FROM $logTableName WHERE $timestampColName < :instant")
+    suspend fun deleteAllBefore(instant: Instant)
 
     @Query("DELETE FROM $logTableName")
     suspend fun clear()

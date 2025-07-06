@@ -15,6 +15,7 @@ public final class io/github/janmalch/shed/database/LogDao_Impl : io/github/janm
 	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun countAll ()Lkotlinx/coroutines/flow/Flow;
 	public fun countAll (Ljava/util/Set;)Lkotlinx/coroutines/flow/Flow;
+	public fun deleteAllBefore (Lkotlinx/datetime/Instant;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun findAll (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static fun getRequiredConverters ()Ljava/util/List;
 	public fun insert (Lio/github/janmalch/shed/database/LogEntity;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;

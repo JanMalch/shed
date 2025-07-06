@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -32,6 +31,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToStream
 import java.io.File
+import kotlin.time.Duration
 
 internal val ALL_PRIORITIES = setOf(
     Log.VERBOSE, Log.DEBUG, Log.INFO, Log.WARN, Log.ERROR, Log.ASSERT,
@@ -98,11 +98,20 @@ internal class ShedViewModel(
         cacheDir().delete()
     }
 
-    fun deleteAllLogs() {
-        viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
-            Log.e(Shed.TAG, "Error while deleting all logs from database.", throwable)
-        }) {
-            dao.clear()
+    fun deleteLogs(maxAge: Duration) {
+        if (maxAge == Duration.ZERO) {
+            viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
+                Log.e(Shed.TAG, "Error while deleting all logs from database.", throwable)
+            }) {
+                dao.clear()
+            }
+        } else {
+            val instant = clock.now() - maxAge
+            viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
+                Log.e(Shed.TAG, "Error while deleting logs from before $instant (max age $maxAge) from database.", throwable)
+            }) {
+                dao.deleteAllBefore(instant)
+            }
         }
     }
 

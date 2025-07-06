@@ -1,5 +1,6 @@
 [versions]
 agp = "8.7.3"
+coreI18n = "1.0.0"
 testCore = "1.6.1"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
@@ -25,6 +26,7 @@ dokka = "2.0.0"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "testCore" }
+androidx-core-i18n = { module = "androidx.core:core-i18n", version.ref = "coreI18n" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
