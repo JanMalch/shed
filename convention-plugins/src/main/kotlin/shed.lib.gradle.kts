@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "io.github.janmalch.shed"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 21

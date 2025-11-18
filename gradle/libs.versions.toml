@@ -1,28 +1,28 @@
 [versions]
 agp = "8.13.1"
 coreI18n = "1.0.0"
-testCore = "1.6.1"
-kotlin = "2.0.21"
-coreKtx = "1.15.0"
+testCore = "1.7.0"
+kotlin = "2.2.21"
+coreKtx = "1.17.0"
 junit = "4.13.2"
-junitVersion = "1.2.1"
-espressoCore = "3.6.1"
-kotlinxCoroutinesAndroid = "1.9.0"
-kotlinxDatetime = "0.6.1"
-lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.9.3"
-composeBom = "2024.12.01"
-appcompat = "1.7.0"
+junitVersion = "1.3.0"
+espressoCore = "3.7.0"
+kotlinxCoroutinesAndroid = "1.10.2"
+kotlinxDatetime = "0.7.1"
+lifecycleRuntimeKtx = "2.9.4"
+activityCompose = "1.11.0"
+composeBom = "2025.11.00"
+appcompat = "1.7.1"
 material = "1.12.0"
 paging = "3.3.6"
-robolectric = "4.14"
+robolectric = "4.16"
 timber = "5.0.1"
-room = "2.7.2"
-ksp = "2.0.21-1.0.27"
-kotlinxSerialization = "1.8.0-RC"
-bcv = "0.17.0"
+room = "2.8.3"
+ksp = "2.2.21-2.0.4"
+kotlinxSerialization = "1.9.0"
+bcv = "0.18.1"
 publish = "0.33.0"
-dokka = "2.0.0"
+dokka = "2.1.0"
 
 [libraries]
 androidx-core = { module = "androidx.test:core", version.ref = "testCore" }
@@ -42,6 +42,7 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-ui-icons = { module = "androidx.compose.material:material-icons-core" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }

@@ -1,7 +1,7 @@
 package io.github.janmalch.shed.database
 
 import androidx.room.TypeConverter
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 
 internal class StandardConverters {
     @TypeConverter

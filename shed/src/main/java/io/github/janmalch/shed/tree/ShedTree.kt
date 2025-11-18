@@ -8,7 +8,7 @@ import io.github.janmalch.shed.database.LogEntity
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 import timber.log.Timber
 
 internal class ShedTree(

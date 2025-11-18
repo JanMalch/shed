@@ -7,8 +7,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import kotlinx.datetime.Clock
 import kotlin.time.Duration
+import kotlin.time.Clock
 
 // extracted to ease testing
 @VisibleForTesting

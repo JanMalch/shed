@@ -10,8 +10,8 @@ import io.github.janmalch.shed.database.LogDao
 import io.github.janmalch.shed.database.LogEntity
 import io.github.janmalch.shed.database.ShedDatabase
 import kotlinx.coroutines.runBlocking
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import kotlin.time.Clock
+import kotlin.time.Instant
 import org.junit.After
 import org.junit.Test
 
