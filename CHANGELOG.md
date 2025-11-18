@@ -1,3 +1,20 @@
+<!-- ROAR:UPCOMING:START -->
+[Upcoming Changes …](https://github.com/JanMalch/Shed/compare/v0.4.1...main)
+<!-- ROAR:UPCOMING:END -->
+
+## [0.4.1](https://github.com/JanMalch/Shed/tree/v0.4.1) - November 18, 2025
+
+**Full Changelog:** [`v0.4.0...v0.4.1`](https://github.com/JanMalch/Shed/compare/v0.4.0...v0.4.1)
+
+### deps
+
+| type | description | commit |
+|---|---|---|
+| chore | update dependencies, Kotlin, and compileSdk | [`dc4eb861`](https://github.com/JanMalch/Shed/commit/dc4eb861396acff6a7ec6b34ef7d597dd3bfa218) |
+| chore | update AGP from 8.11.0 to 8.13.1 | [`64cff875`](https://github.com/JanMalch/Shed/commit/64cff8751e3caab78e27f467362a7f773834914d) |
+
+
+
 ## [0.4.0](https://github.com/JanMalch/Shed/tree/v0.4.0) - July 6, 2025
 
 **Full Changelog:** [`v0.3.0...v0.4.0`](https://github.com/JanMalch/Shed/compare/v0.3.0...v0.4.0)

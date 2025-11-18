@@ -18,7 +18,7 @@ At its core, Shed provides two modules: `shed` and `shed-nop`.
 
 ```kotlin
 dependencies {
-    val shed_version = "0.4.0"
+    val shed_version = "0.4.1"
     implementation("com.jakewharton.timber:timber:5.0.1")
 
     // Only use database in debug builds, do nothing in release builds.
